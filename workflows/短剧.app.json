@@ -1,0 +1,2004 @@
+{
+  "id": "duanju-app-local",
+  "revision": 0,
+  "last_node_id": 48,
+  "last_link_id": 62,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "MarkdownNote",
+      "pos": [
+        -520,
+        40
+      ],
+      "size": [
+        460,
+        280
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "一次运行做完一镜。画幅和类型会写进提示词，并决定出图、出视频的尺寸。同一集请用同一个画幅。\n\n大纲可以写得很短。系统会润色成短剧提示词。\n事例：用户写「雨夜，女主在便利店遇见前男友」。\n画面会变成「近景。林晚：二十五岁东亚女性，鹅蛋脸，黑长直发，细眉，米色风衣。雨夜便利店门口，她撑伞回头。霓虹映在湿地面，侧光，浅景深」。\n动作会变成「镜头落到她眼睛上，脚步顿住，肩膀一僵」。\n\n本镜提示留空就用分镜。写了会按你的句子再润色这一镜，例如：近景，她撑伞回头，眼神愣住。\n主角图按人物顺序，背景和视频按镜号。不用的保持「无」。\n做完一镜后改镜号再运行，会接进同一条成片。不要同时再开一个任务。"
+      ],
+      "title": "怎么用"
+    },
+    {
+      "id": 2,
+      "type": "DuanjuShot",
+      "pos": [
+        0,
+        40
+      ],
+      "size": [
+        380,
+        510
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "画面提示词",
+          "type": "STRING",
+          "links": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "动作提示词",
+          "type": "STRING",
+          "links": [
+            20,
+            60
+          ]
+        },
+        {
+          "name": "对白",
+          "type": "STRING",
+          "links": [
+            28,
+            31
+          ]
+        },
+        {
+          "name": "说话人",
+          "type": "STRING",
+          "links": [
+            29
+          ]
+        },
+        {
+          "name": "情绪",
+          "type": "STRING",
+          "links": [
+            30
+          ]
+        },
+        {
+          "name": "集",
+          "type": "STRING",
+          "links": [
+            38
+          ]
+        },
+        {
+          "name": "镜号",
+          "type": "STRING",
+          "links": [
+            39,
+            50
+          ]
+        },
+        {
+          "name": "角色序号",
+          "type": "INT",
+          "links": [
+            49
+          ]
+        },
+        {
+          "name": "画面宽",
+          "type": "INT",
+          "links": [
+            52
+          ]
+        },
+        {
+          "name": "画面高",
+          "type": "INT",
+          "links": [
+            53
+          ]
+        },
+        {
+          "name": "视频宽",
+          "type": "INT",
+          "links": [
+            54,
+            61
+          ]
+        },
+        {
+          "name": "视频高",
+          "type": "INT",
+          "links": [
+            55,
+            62
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "第一集",
+        "雨夜，女主在便利店遇见前男友，说了两句就转身离开",
+        1,
+        false,
+        "竖屏 9:16",
+        "现实都市",
+        "",
+        "跟随角色"
+      ],
+      "title": "1 剧本"
+    },
+    {
+      "id": 10,
+      "type": "DuanjuZImageStack",
+      "pos": [
+        440,
+        40
+      ],
+      "size": [
+        280,
+        120
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            3
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            4
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "title": "2 文生图模型"
+    },
+    {
+      "id": 11,
+      "type": "CLIPTextEncode",
+      "pos": [
+        440,
+        200
+      ],
+      "size": [
+        380,
+        160
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 4
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 2,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            6,
+            7
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        ""
+      ],
+      "title": "定妆提示词"
+    },
+    {
+      "id": 12,
+      "type": "ConditioningZeroOut",
+      "pos": [
+        440,
+        400
+      ],
+      "size": [
+        220,
+        60
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": []
+    },
+    {
+      "id": 13,
+      "type": "EmptySD3LatentImage",
+      "pos": [
+        440,
+        500
+      ],
+      "size": [
+        260,
+        140
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 52
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 53
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        768,
+        1344,
+        1
+      ]
+    },
+    {
+      "id": 14,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        860,
+        40
+      ],
+      "size": [
+        260,
+        80
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 15,
+      "type": "KSampler",
+      "pos": [
+        860,
+        160
+      ],
+      "size": [
+        320,
+        280
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 10
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 6
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 8
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        0,
+        "fixed",
+        8,
+        1,
+        "res_multistep",
+        "simple",
+        1
+      ],
+      "title": "定妆采样"
+    },
+    {
+      "id": 16,
+      "type": "VAEDecode",
+      "pos": [
+        1220,
+        160
+      ],
+      "size": [
+        220,
+        80
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 11
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            12,
+            13,
+            37,
+            48
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": []
+    },
+    {
+      "id": 17,
+      "type": "SaveImage",
+      "pos": [
+        1220,
+        280
+      ],
+      "size": [
+        360,
+        320
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 12
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "短剧/定妆"
+      ],
+      "title": "定妆图"
+    },
+    {
+      "id": 20,
+      "type": "DuanjuWanStack",
+      "pos": [
+        1640,
+        40
+      ],
+      "size": [
+        280,
+        120
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            15
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            16,
+            17,
+            57
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            18,
+            19,
+            58
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "title": "3 图生视频模型"
+    },
+    {
+      "id": 21,
+      "type": "CLIPTextEncode",
+      "pos": [
+        1640,
+        200
+      ],
+      "size": [
+        380,
+        140
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 16
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 20,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            21
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        ""
+      ],
+      "title": "动作提示词"
+    },
+    {
+      "id": 22,
+      "type": "CLIPTextEncode",
+      "pos": [
+        1640,
+        380
+      ],
+      "size": [
+        380,
+        180
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 17
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            22
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走"
+      ],
+      "title": "负面提示词"
+    },
+    {
+      "id": 23,
+      "type": "ModelSamplingSD3",
+      "pos": [
+        2080,
+        40
+      ],
+      "size": [
+        240,
+        70
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            23,
+            56
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        8
+      ]
+    },
+    {
+      "id": 24,
+      "type": "Wan22ImageToVideoLatent",
+      "pos": [
+        2080,
+        150
+      ],
+      "size": [
+        280,
+        160
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 18
+        },
+        {
+          "name": "start_image",
+          "type": "IMAGE",
+          "link": 51
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 54
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 55
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            24
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        480,
+        832,
+        17,
+        1
+      ]
+    },
+    {
+      "id": 25,
+      "type": "KSampler",
+      "pos": [
+        2080,
+        360
+      ],
+      "size": [
+        320,
+        280
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 23
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 21
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 22
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 24
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            25
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        0,
+        "randomize",
+        20,
+        4,
+        "euler",
+        "simple",
+        1
+      ],
+      "title": "视频采样"
+    },
+    {
+      "id": 26,
+      "type": "VAEDecode",
+      "pos": [
+        2440,
+        160
+      ],
+      "size": [
+        220,
+        80
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 25
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 19
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {},
+      "widgets_values": []
+    },
+    {
+      "id": 30,
+      "type": "DuanjuVoice",
+      "pos": [
+        2440,
+        300
+      ],
+      "size": [
+        280,
+        160
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 26
+        },
+        {
+          "name": "对白",
+          "type": "STRING",
+          "link": 28
+        },
+        {
+          "name": "说话人",
+          "type": "STRING",
+          "link": 29
+        },
+        {
+          "name": "情绪",
+          "type": "STRING",
+          "link": 30
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            32,
+            33
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "title": "4 配音"
+    },
+    {
+      "id": 31,
+      "type": "HaloLipsy",
+      "pos": [
+        2780,
+        40
+      ],
+      "size": [
+        340,
+        360
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 27
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 32
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            34
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "auto",
+        24.0,
+        "sequential",
+        false,
+        4,
+        1,
+        8,
+        10,
+        0,
+        1.0,
+        5,
+        0,
+        false
+      ],
+      "title": "5 口型"
+    },
+    {
+      "id": 32,
+      "type": "DuanjuSubtitle",
+      "pos": [
+        3160,
+        40
+      ],
+      "size": [
+        260,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 34
+        },
+        {
+          "name": "对白",
+          "type": "STRING",
+          "link": 31
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            35
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "title": "6 字幕"
+    },
+    {
+      "id": 33,
+      "type": "CreateVideo",
+      "pos": [
+        3160,
+        180
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 35
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 33
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            36,
+            40
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        24
+      ]
+    },
+    {
+      "id": 34,
+      "type": "SaveVideo",
+      "pos": [
+        3160,
+        320
+      ],
+      "size": [
+        420,
+        360
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 36
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "短剧/成片",
+        "auto",
+        "auto"
+      ],
+      "title": "成片"
+    },
+    {
+      "id": 35,
+      "type": "DuanjuExport",
+      "pos": [
+        3640,
+        180
+      ],
+      "size": [
+        320,
+        160
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 40
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 37
+        },
+        {
+          "name": "集",
+          "type": "STRING",
+          "link": 38
+        },
+        {
+          "name": "镜号",
+          "type": "STRING",
+          "link": 39
+        }
+      ],
+      "outputs": [
+        {
+          "name": "路径",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "title": "7 写入这一集"
+    },
+    {
+      "id": 40,
+      "type": "DuanjuChar1",
+      "pos": [
+        0,
+        430
+      ],
+      "size": [
+        340,
+        90
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "文件",
+          "type": "STRING",
+          "links": [
+            41
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "无",
+        "image"
+      ],
+      "title": "主角 1"
+    },
+    {
+      "id": 41,
+      "type": "DuanjuChar2",
+      "pos": [
+        0,
+        550
+      ],
+      "size": [
+        340,
+        90
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "文件",
+          "type": "STRING",
+          "links": [
+            42
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "无",
+        "image"
+      ],
+      "title": "主角 2"
+    },
+    {
+      "id": 42,
+      "type": "DuanjuChar3",
+      "pos": [
+        0,
+        670
+      ],
+      "size": [
+        340,
+        90
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "文件",
+          "type": "STRING",
+          "links": [
+            43
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "无",
+        "image"
+      ],
+      "title": "主角 3"
+    },
+    {
+      "id": 43,
+      "type": "DuanjuBg1",
+      "pos": [
+        0,
+        790
+      ],
+      "size": [
+        340,
+        90
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "文件",
+          "type": "STRING",
+          "links": [
+            44
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "无",
+        "image"
+      ],
+      "title": "背景 1"
+    },
+    {
+      "id": 44,
+      "type": "DuanjuBg2",
+      "pos": [
+        0,
+        910
+      ],
+      "size": [
+        340,
+        90
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "文件",
+          "type": "STRING",
+          "links": [
+            45
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "无",
+        "image"
+      ],
+      "title": "背景 2"
+    },
+    {
+      "id": 45,
+      "type": "DuanjuVid1",
+      "pos": [
+        0,
+        1030
+      ],
+      "size": [
+        340,
+        90
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "文件",
+          "type": "STRING",
+          "links": [
+            46
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "无",
+        "image"
+      ],
+      "title": "视频 1"
+    },
+    {
+      "id": 46,
+      "type": "DuanjuVid2",
+      "pos": [
+        0,
+        1150
+      ],
+      "size": [
+        340,
+        90
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "文件",
+          "type": "STRING",
+          "links": [
+            47
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "无",
+        "image"
+      ],
+      "title": "视频 2"
+    },
+    {
+      "id": 47,
+      "type": "DuanjuComposeStart",
+      "pos": [
+        1220,
+        430
+      ],
+      "size": [
+        280,
+        280
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "画面",
+          "type": "IMAGE",
+          "link": 48
+        },
+        {
+          "name": "主角1",
+          "type": "STRING",
+          "link": 41
+        },
+        {
+          "name": "主角2",
+          "type": "STRING",
+          "link": 42
+        },
+        {
+          "name": "主角3",
+          "type": "STRING",
+          "link": 43
+        },
+        {
+          "name": "背景1",
+          "type": "STRING",
+          "link": 44
+        },
+        {
+          "name": "背景2",
+          "type": "STRING",
+          "link": 45
+        },
+        {
+          "name": "视频1",
+          "type": "STRING",
+          "link": 46
+        },
+        {
+          "name": "视频2",
+          "type": "STRING",
+          "link": 47
+        },
+        {
+          "name": "角色序号",
+          "type": "INT",
+          "link": 49
+        },
+        {
+          "name": "镜号",
+          "type": "STRING",
+          "link": 50
+        }
+      ],
+      "outputs": [
+        {
+          "name": "起始画面",
+          "type": "IMAGE",
+          "links": [
+            51,
+            59
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "title": "起始画面"
+    },
+    {
+      "id": 48,
+      "type": "DuanjuSeconds",
+      "pos": [
+        2440,
+        300
+      ],
+      "size": [
+        280,
+        180
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 56
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 57
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 58
+        },
+        {
+          "name": "画面",
+          "type": "IMAGE",
+          "link": 59
+        },
+        {
+          "name": "动作",
+          "type": "STRING",
+          "link": 60
+        },
+        {
+          "name": "宽",
+          "type": "INT",
+          "link": 61
+        },
+        {
+          "name": "高",
+          "type": "INT",
+          "link": 62
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            26,
+            27
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DuanjuSeconds"
+      },
+      "widgets_values": [],
+      "title": "五秒"
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      10,
+      0,
+      "STRING"
+    ],
+    [
+      2,
+      2,
+      0,
+      11,
+      1,
+      "STRING"
+    ],
+    [
+      3,
+      10,
+      0,
+      14,
+      0,
+      "MODEL"
+    ],
+    [
+      4,
+      10,
+      1,
+      11,
+      0,
+      "CLIP"
+    ],
+    [
+      5,
+      10,
+      2,
+      16,
+      1,
+      "VAE"
+    ],
+    [
+      6,
+      11,
+      0,
+      15,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      7,
+      11,
+      0,
+      12,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      8,
+      12,
+      0,
+      15,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      9,
+      13,
+      0,
+      15,
+      3,
+      "LATENT"
+    ],
+    [
+      10,
+      14,
+      0,
+      15,
+      0,
+      "MODEL"
+    ],
+    [
+      11,
+      15,
+      0,
+      16,
+      0,
+      "LATENT"
+    ],
+    [
+      12,
+      16,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      13,
+      16,
+      0,
+      20,
+      0,
+      "IMAGE"
+    ],
+    [
+      15,
+      20,
+      0,
+      23,
+      0,
+      "MODEL"
+    ],
+    [
+      16,
+      20,
+      1,
+      21,
+      0,
+      "CLIP"
+    ],
+    [
+      17,
+      20,
+      1,
+      22,
+      0,
+      "CLIP"
+    ],
+    [
+      18,
+      20,
+      2,
+      24,
+      0,
+      "VAE"
+    ],
+    [
+      19,
+      20,
+      2,
+      26,
+      1,
+      "VAE"
+    ],
+    [
+      20,
+      2,
+      1,
+      21,
+      1,
+      "STRING"
+    ],
+    [
+      21,
+      21,
+      0,
+      25,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      22,
+      22,
+      0,
+      25,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      23,
+      23,
+      0,
+      25,
+      0,
+      "MODEL"
+    ],
+    [
+      24,
+      24,
+      0,
+      25,
+      3,
+      "LATENT"
+    ],
+    [
+      25,
+      25,
+      0,
+      26,
+      0,
+      "LATENT"
+    ],
+    [
+      26,
+      48,
+      0,
+      30,
+      0,
+      "IMAGE"
+    ],
+    [
+      27,
+      48,
+      0,
+      31,
+      0,
+      "IMAGE"
+    ],
+    [
+      28,
+      2,
+      2,
+      30,
+      1,
+      "STRING"
+    ],
+    [
+      29,
+      2,
+      3,
+      30,
+      2,
+      "STRING"
+    ],
+    [
+      30,
+      2,
+      4,
+      30,
+      3,
+      "STRING"
+    ],
+    [
+      31,
+      2,
+      2,
+      32,
+      1,
+      "STRING"
+    ],
+    [
+      32,
+      30,
+      0,
+      31,
+      1,
+      "AUDIO"
+    ],
+    [
+      33,
+      30,
+      0,
+      33,
+      1,
+      "AUDIO"
+    ],
+    [
+      34,
+      31,
+      0,
+      32,
+      0,
+      "IMAGE"
+    ],
+    [
+      35,
+      32,
+      0,
+      33,
+      0,
+      "IMAGE"
+    ],
+    [
+      36,
+      33,
+      0,
+      34,
+      0,
+      "VIDEO"
+    ],
+    [
+      37,
+      16,
+      0,
+      35,
+      1,
+      "IMAGE"
+    ],
+    [
+      38,
+      2,
+      5,
+      35,
+      2,
+      "STRING"
+    ],
+    [
+      39,
+      2,
+      6,
+      35,
+      3,
+      "STRING"
+    ],
+    [
+      40,
+      33,
+      0,
+      35,
+      0,
+      "VIDEO"
+    ],
+    [
+      41,
+      40,
+      0,
+      47,
+      1,
+      "STRING"
+    ],
+    [
+      42,
+      41,
+      0,
+      47,
+      2,
+      "STRING"
+    ],
+    [
+      43,
+      42,
+      0,
+      47,
+      3,
+      "STRING"
+    ],
+    [
+      44,
+      43,
+      0,
+      47,
+      4,
+      "STRING"
+    ],
+    [
+      45,
+      44,
+      0,
+      47,
+      5,
+      "STRING"
+    ],
+    [
+      46,
+      45,
+      0,
+      47,
+      6,
+      "STRING"
+    ],
+    [
+      47,
+      46,
+      0,
+      47,
+      7,
+      "STRING"
+    ],
+    [
+      48,
+      16,
+      0,
+      47,
+      0,
+      "IMAGE"
+    ],
+    [
+      49,
+      2,
+      7,
+      47,
+      8,
+      "INT"
+    ],
+    [
+      50,
+      2,
+      6,
+      47,
+      9,
+      "STRING"
+    ],
+    [
+      51,
+      47,
+      0,
+      24,
+      1,
+      "IMAGE"
+    ],
+    [
+      52,
+      2,
+      8,
+      13,
+      0,
+      "INT"
+    ],
+    [
+      53,
+      2,
+      9,
+      13,
+      1,
+      "INT"
+    ],
+    [
+      54,
+      2,
+      10,
+      24,
+      2,
+      "INT"
+    ],
+    [
+      55,
+      2,
+      11,
+      24,
+      3,
+      "INT"
+    ],
+    [
+      56,
+      23,
+      0,
+      48,
+      0,
+      "MODEL"
+    ],
+    [
+      57,
+      20,
+      1,
+      48,
+      1,
+      "CLIP"
+    ],
+    [
+      58,
+      20,
+      2,
+      48,
+      2,
+      "VAE"
+    ],
+    [
+      59,
+      47,
+      0,
+      48,
+      3,
+      "IMAGE"
+    ],
+    [
+      60,
+      2,
+      1,
+      48,
+      4,
+      "STRING"
+    ],
+    [
+      61,
+      2,
+      10,
+      48,
+      5,
+      "INT"
+    ],
+    [
+      62,
+      2,
+      11,
+      48,
+      6,
+      "INT"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "linearMode": true,
+    "linearData": {
+      "inputs": [
+        [
+          "2",
+          "集"
+        ],
+        [
+          "2",
+          "大纲"
+        ],
+        [
+          "2",
+          "镜号"
+        ],
+        [
+          "2",
+          "重写"
+        ],
+        [
+          "2",
+          "画幅"
+        ],
+        [
+          "2",
+          "类型"
+        ],
+        [
+          "2",
+          "本镜提示"
+        ],
+        [
+          "2",
+          "音色"
+        ],
+        [
+          "15",
+          "seed"
+        ],
+        [
+          "40",
+          "主角参考图1"
+        ],
+        [
+          "41",
+          "主角参考图2"
+        ],
+        [
+          "42",
+          "主角参考图3"
+        ],
+        [
+          "43",
+          "背景参考图1"
+        ],
+        [
+          "44",
+          "背景参考图2"
+        ],
+        [
+          "45",
+          "视频参考1"
+        ],
+        [
+          "46",
+          "视频参考2"
+        ]
+      ],
+      "outputs": [
+        "17",
+        "34",
+        "35"
+      ]
+    },
+    "frontendVersion": "1.45.21"
+  },
+  "version": 0.4
+}

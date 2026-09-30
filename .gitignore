@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+output/
+.DS_Store
+*.safetensors
+*.pth
+*.mp4
+*.png
