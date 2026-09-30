@@ -1,0 +1,115 @@
+{
+  "title": "雨夜重逢",
+  "logline": "雨夜便利店，她遇见了前男友。",
+  "characters": [
+    {
+      "name": "林晚",
+      "role": "女主",
+      "speaker": "Vivian",
+      "lock": "二十五岁东亚女性，鹅蛋脸，黑长直发，细眉，穿米色风衣",
+      "voice": "压低声音，语速偏慢"
+    },
+    {
+      "name": "陆沉",
+      "role": "前男友",
+      "speaker": "Dylan",
+      "lock": "二十五岁东亚男性，瓜子脸，短发，浓眉，穿黑色风衣",
+      "voice": "低沉，语速正常"
+    },
+    {
+      "name": "Uncle_Fu",
+      "role": "便利店店员",
+      "speaker": "Uncle_Fu",
+      "lock": "六十岁东亚男性，圆脸，光头，戴眼镜，穿蓝白制服",
+      "voice": "慢条斯理"
+    },
+    {
+      "name": "Eric",
+      "role": "旁白",
+      "speaker": "Eric",
+      "lock": "",
+      "voice": "中性，语速适中"
+    }
+  ],
+  "shots": [
+    {
+      "id": "01",
+      "seconds": 5,
+      "characters": [
+        "林晚"
+      ],
+      "scene": "雨夜便利店门口",
+      "dialogue": "你怎么在这。",
+      "speaker": "Vivian",
+      "emotion": "意外",
+      "image_prompt": "二十五岁东亚女性，鹅蛋脸，黑长直发，细眉，穿米色风衣，雨夜便利店门口，街灯昏黄。竖屏构图，电影感，真实皮肤，浅景深",
+      "video_prompt": "她停下脚步，回头"
+    },
+    {
+      "id": "02",
+      "seconds": 4,
+      "characters": [
+        "陆沉"
+      ],
+      "scene": "雨夜便利店门口",
+      "dialogue": "你不是说不来了吗。",
+      "speaker": "Dylan",
+      "emotion": "无奈",
+      "image_prompt": "二十五岁东亚男性，瓜子脸，短发，浓眉，穿黑色风衣，雨夜便利店门口，街灯昏黄。竖屏构图，电影感，真实皮肤，浅景深",
+      "video_prompt": "他从雨中走出，抬手擦脸"
+    },
+    {
+      "id": "03",
+      "seconds": 5,
+      "characters": [
+        "林晚",
+        "陆沉"
+      ],
+      "scene": "雨夜便利店门口",
+      "dialogue": "你还在等我。",
+      "speaker": "Vivian",
+      "emotion": "冷淡",
+      "image_prompt": "二十五岁东亚女性，鹅蛋脸，黑长直发，细眉，穿米色风衣，二十五岁东亚男性，瓜子脸，短发，浓眉，穿黑色风衣，雨夜便利店门口，街灯昏黄。竖屏构图，电影感，真实皮肤，浅景深",
+      "video_prompt": "两人对视，雨滴打在路灯上"
+    },
+    {
+      "id": "04",
+      "seconds": 4,
+      "characters": [
+        "Uncle_Fu"
+      ],
+      "scene": "雨夜便利店门口",
+      "dialogue": "要来杯热可可吗？",
+      "speaker": "Uncle_Fu",
+      "emotion": "温和",
+      "image_prompt": "六十岁东亚男性，圆脸，光头，戴眼镜，穿蓝白制服，雨夜便利店门口，街灯昏黄。竖屏构图，电影感，真实皮肤，浅景深",
+      "video_prompt": "店员从柜台探身，递出纸杯"
+    },
+    {
+      "id": "05",
+      "seconds": 5,
+      "characters": [
+        "林晚"
+      ],
+      "scene": "雨夜便利店门口",
+      "dialogue": "我走了。",
+      "speaker": "Vivian",
+      "emotion": "决绝",
+      "image_prompt": "二十五岁东亚女性，鹅蛋脸，黑长直发，细眉，穿米色风衣，雨夜便利店门口，街灯昏黄。竖屏构图，电影感，真实皮肤，浅景深",
+      "video_prompt": "她转身走进雨中，身影逐渐模糊"
+    },
+    {
+      "id": "06",
+      "seconds": 4,
+      "characters": [
+        "陆沉"
+      ],
+      "scene": "雨夜便利店门口",
+      "dialogue": "等等。",
+      "speaker": "Dylan",
+      "emotion": "不舍",
+      "image_prompt": "二十五岁东亚男性，瓜子脸，短发，浓眉，穿黑色风衣，雨夜便利店门口，街灯昏黄。竖屏构图，电影感，真实皮肤，浅景深",
+      "video_prompt": "他伸手想拉住她，却停在半空"
+    }
+  ]
+}

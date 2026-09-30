@@ -1,0 +1,58 @@
+{
+  "title": "雨夜重逢",
+  "logline": "一场雨夜的偶遇，揭开一段未完的往事。",
+  "characters": [
+    {
+      "name": "林晚",
+      "role": "女主",
+      "speaker": "Vivian",
+      "lock": "二十五岁东亚女性，鹅蛋脸，黑长直发，细眉，穿米色风衣",
+      "voice": "压低声音，语速偏慢"
+    },
+    {
+      "name": "程澈",
+      "role": "前男友",
+      "speaker": "Dylan",
+      "lock": "二十五岁东亚男性，瓜子脸，短发微卷，眉骨突出，穿黑色雨衣",
+      "voice": "低沉，语速偏快"
+    },
+    {
+      "name": "Eric",
+      "role": "旁白",
+      "speaker": "Eric",
+      "lock": "四十岁东亚男性，圆脸，光头，戴黑框眼镜，穿灰色毛衣",
+      "voice": "平静，中速"
+    }
+  ],
+  "shots": [
+    {
+      "id": "01",
+      "seconds": 5,
+      "characters": [
+        "林晚"
+      ],
+      "scene": "雨夜便利店门口",
+      "dialogue": "你怎么在这。",
+      "speaker": "Vivian",
+      "emotion": "意外",
+      "image_prompt": "二十五岁东亚女性，鹅蛋脸，黑长直发，细眉，穿米色风衣，雨夜便利店门口，昏黄路灯下。竖屏构图，电影感，真实皮肤，浅景深",
+      "video_prompt": "她停下脚步，回头",
+      "audio_seconds": 1.9
+    },
+    {
+      "id": "02",
+      "seconds": 4,
+      "characters": [
+        "林晚",
+        "程澈"
+      ],
+      "scene": "便利店门口雨中",
+      "dialogue": "你不是说不会来了。",
+      "speaker": "Dylan",
+      "emotion": "无奈",
+      "image_prompt": "二十五岁东亚女性，鹅蛋脸，黑长直发，细眉，穿米色风衣，二十五岁东亚男性，瓜子脸，短发微卷，眉骨突出，穿黑色雨衣，雨夜便利店门口，昏黄路灯下。竖屏构图，电影感，真实皮肤，浅景深",
+      "video_prompt": "程澈转身，雨滴滑落，林晚低头",
+      "audio_seconds": 2.14
+    }
+  ]
+}

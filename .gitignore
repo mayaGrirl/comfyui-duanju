@@ -1,9 +1,8 @@
 __pycache__/
 *.pyc
 .venv/
-output/
 .DS_Store
 *.safetensors
 *.pth
-*.mp4
-*.png
+成片/
+成片.mp4
